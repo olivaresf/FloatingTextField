@@ -13,9 +13,11 @@
 		48C0102222CE10130035BE3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48C0102122CE10130035BE3E /* Assets.xcassets */; };
 		48C0102522CE10130035BE3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48C0102322CE10130035BE3E /* LaunchScreen.storyboard */; };
 		48C0102D22CE10A10035BE3E /* FloatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C0102C22CE10A00035BE3E /* FloatingTextField.swift */; };
+		BF03161F33846594BF7FAD89 /* Pods_FloatingTextField.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF35C1D6CEFE135E868B00A4 /* Pods_FloatingTextField.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0CA602733F7059C1B3EC33AB /* Pods-FloatingTextField.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FloatingTextField.debug.xcconfig"; path = "Target Support Files/Pods-FloatingTextField/Pods-FloatingTextField.debug.xcconfig"; sourceTree = "<group>"; };
 		48C0101722CE10110035BE3E /* FloatingTextField.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FloatingTextField.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C0101A22CE10110035BE3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48C0101C22CE10110035BE3E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +26,8 @@
 		48C0102422CE10130035BE3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		48C0102622CE10130035BE3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48C0102C22CE10A00035BE3E /* FloatingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingTextField.swift; sourceTree = "<group>"; };
+		BF35C1D6CEFE135E868B00A4 /* Pods_FloatingTextField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FloatingTextField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E522A9BFE39891CC88CD9DEE /* Pods-FloatingTextField.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FloatingTextField.release.xcconfig"; path = "Target Support Files/Pods-FloatingTextField/Pods-FloatingTextField.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF03161F33846594BF7FAD89 /* Pods_FloatingTextField.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1617214883F93C365AC6BF17 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BF35C1D6CEFE135E868B00A4 /* Pods_FloatingTextField.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		48C0100E22CE10110035BE3E = {
 			isa = PBXGroup;
 			children = (
 				48C0101922CE10110035BE3E /* FloatingTextField */,
 				48C0101822CE10110035BE3E /* Products */,
+				85787BE186C4A265E8697F13 /* Pods */,
+				1617214883F93C365AC6BF17 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +82,15 @@
 			path = FloatingTextField;
 			sourceTree = "<group>";
 		};
+		85787BE186C4A265E8697F13 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0CA602733F7059C1B3EC33AB /* Pods-FloatingTextField.debug.xcconfig */,
+				E522A9BFE39891CC88CD9DEE /* Pods-FloatingTextField.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +98,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 48C0102922CE10130035BE3E /* Build configuration list for PBXNativeTarget "FloatingTextField" */;
 			buildPhases = (
+				A8C4009870EF7C6EFA4C8088 /* [CP] Check Pods Manifest.lock */,
 				48C0101322CE10110035BE3E /* Sources */,
 				48C0101422CE10110035BE3E /* Frameworks */,
 				48C0101522CE10110035BE3E /* Resources */,
+				9B62FF332588479200DBD4BF /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -132,6 +158,49 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9B62FF332588479200DBD4BF /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		A8C4009870EF7C6EFA4C8088 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FloatingTextField-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		48C0101322CE10110035BE3E /* Sources */ = {
@@ -284,6 +353,7 @@
 		};
 		48C0102A22CE10130035BE3E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0CA602733F7059C1B3EC33AB /* Pods-FloatingTextField.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -303,6 +373,7 @@
 		};
 		48C0102B22CE10130035BE3E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E522A9BFE39891CC88CD9DEE /* Pods-FloatingTextField.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
