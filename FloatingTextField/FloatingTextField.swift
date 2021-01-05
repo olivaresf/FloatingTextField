@@ -2,8 +2,8 @@
 import UIKit
 
 let CScreenWidth = UIScreen.main.bounds.size.width
-let AnimationDuration = 0.3
-let LeftPadding: CGFloat = 15.0
+let defaultAnimationDuration = 0.3
+let defaultPlaceholderLeftPadding: CGFloat = 15.0
 
 @objc protocol FloatingTextFieldDelegate:class {
     @objc optional func floatingTextField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
@@ -27,47 +27,47 @@ class FloatingTextField: UITextField, UITextFieldDelegate {
     
     @IBInspectable var placeHolder: String = ""
     @IBInspectable var placeHolderFont: UIFont?
-    @IBInspectable var PlaceHolderColor:UIColor = UIColor.lightGray
-    @IBInspectable var PlaceHolderColorAfterText:UIColor = UIColor.black
-    @IBInspectable var PlaceHolderBackgroundColor:UIColor = UIColor.white
-    @IBInspectable var PlaceHolderLeftPadding: CGFloat = 15
-    @IBInspectable var PlaceHolderLeftPaddingAfterAnimation: CGFloat = 15
+    @IBInspectable var placeHolderColor:UIColor = UIColor.lightGray
+    @IBInspectable var placeHolderColorAfterText:UIColor = UIColor.black
+    @IBInspectable var placeHolderBackgroundColor:UIColor = UIColor.white
+    @IBInspectable var placeHolderLeftPadding: CGFloat = 15
+    @IBInspectable var placeHolderLeftPaddingAfterAnimation: CGFloat = 15
     
-    @IBInspectable var BorderColor:UIColor = UIColor.black
-    @IBInspectable var BorderWidth: CGFloat = 0.0
-    @IBInspectable var CornerRadius: CGFloat = 1.0
+    @IBInspectable var borderColor:UIColor = UIColor.black
+    @IBInspectable var borderWidth: CGFloat = 0.0
+    @IBInspectable var cornerRadius: CGFloat = 1.0
     
-    @IBInspectable var RightViewImage: UIImage = UIImage()
-    @IBInspectable var LeftViewImage: UIImage = UIImage()
-    @IBInspectable var AllowAnimation: Bool = true
-    @IBInspectable var FixedAtTop: Bool = false
-    @IBInspectable var RoundCorner: Bool = false
-    @IBInspectable var ShowRightView: Bool = false
-    @IBInspectable var ShowLeftView: Bool = false
+    @IBInspectable var rightViewImage: UIImage = UIImage()
+    @IBInspectable var leftViewImage: UIImage = UIImage()
+    @IBInspectable var allowAnimation: Bool = true
+    @IBInspectable var fixedAtTop: Bool = false
+    @IBInspectable var roundCorner: Bool = false
+    @IBInspectable var showRightView: Bool = false
+    @IBInspectable var showLeftView: Bool = false
     
     
     var viewBottomLine = UIView()
-    @IBInspectable var ShowBottomLine: Bool = false
-    @IBInspectable var BottomLineColor:UIColor = UIColor.black
-    @IBInspectable var BottomLineSelectedColor:UIColor = UIColor.black
+    @IBInspectable var showBottomLine: Bool = false
+    @IBInspectable var bottomLineColor:UIColor = UIColor.black
+    @IBInspectable var bottomLineSelectedColor:UIColor = UIColor.black
     
-    var PlaceholderFontSize : CGFloat = 14
+    var placeholderFontSize : CGFloat = 14
     var lblPlaceHolder = UILabel()
     var btnRightView = UIButton()
     var btnLeftView = UIButton()
     
     var padding = UIEdgeInsets(
         top: 0,
-        left: LeftPadding,
+        left: defaultPlaceholderLeftPadding,
         bottom: 0,
-        right: LeftPadding
+        right: defaultPlaceholderLeftPadding
     )
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        PlaceholderFontSize = (self.font?.pointSize)!
+        placeholderFontSize = (self.font?.pointSize)!
         
         self.font = UIFont(
             name: (self.font?.fontName)!,
@@ -84,31 +84,31 @@ class FloatingTextField: UITextField, UITextFieldDelegate {
             self.placeHolderSetup()
             
             // For Right View
-            if self.ShowRightView {
+            if self.showRightView {
                 self.rightViewSetup()
                 
                 self.padding = UIEdgeInsets(
                     top: 0,
-                    left: LeftPadding,
+                    left: defaultPlaceholderLeftPadding,
                     bottom: 0,
                     right: self.frame.size.height
                 )
             }
             
             // For Left View
-            if self.ShowLeftView {
+            if self.showLeftView {
                 self.leftViewSetup()
                 
                 self.padding = UIEdgeInsets(
                     top: 0,
                     left: self.frame.size.height + 5,
                     bottom: 0,
-                    right: LeftPadding
+                    right: defaultPlaceholderLeftPadding
                 )
             }
             
             // For Bottom line
-            if self.ShowBottomLine {
+            if self.showBottomLine {
                 self.bottomLineViewSetup()
             }
             
@@ -140,13 +140,13 @@ extension FloatingTextField {
     
     private func textFieldBorderSetup() {
         
-        self.layer.borderColor = BorderColor.cgColor
-        self.layer.borderWidth = BorderWidth
+        self.layer.borderColor = borderColor.cgColor
+        self.layer.borderWidth = borderWidth
         //turnery
-        if RoundCorner {
+        if roundCorner {
             self.layer.cornerRadius = self.frame.size.height/2
         }else {
-            self.layer.cornerRadius = CornerRadius
+            self.layer.cornerRadius = cornerRadius
         }
         
     }
@@ -177,20 +177,20 @@ extension FloatingTextField {
             height: self.frame.size.height - 10
         )
         
-        lblPlaceHolder.backgroundColor = PlaceHolderBackgroundColor
+        lblPlaceHolder.backgroundColor = placeHolderBackgroundColor
         lblPlaceHolder.text = " \(placeHolder) "
-        lblPlaceHolder.textColor = PlaceHolderColor
+        lblPlaceHolder.textColor = placeHolderColor
         
         lblPlaceHolder.font = UIFont(
             name: (self.font?.fontName)!,
-            size: round(CScreenWidth * (PlaceholderFontSize / 375))
+            size: round(CScreenWidth * (placeholderFontSize / 375))
         )
         
         lblPlaceHolder.isUserInteractionEnabled = false
         self.superview?.addSubview(lblPlaceHolder)
         
         // To fixed placeholder at top
-        if FixedAtTop {
+        if fixedAtTop {
             
             let heightOfLable:CGFloat = CScreenWidth * 16 / 375
             
@@ -217,15 +217,15 @@ extension FloatingTextField {
         }
         
         // Animation will not perform for fixed placholder at top.
-        if FixedAtTop {
+        if fixedAtTop {
             return
         }
         
         // Move Placeholder
         if isMoveUp! {
             
-            UIView.animate(withDuration: AnimationDuration) {
-                self.lblPlaceHolder.textColor = self.PlaceHolderColorAfterText
+            UIView.animate(withDuration: defaultAnimationDuration) {
+                self.lblPlaceHolder.textColor = self.placeHolderColorAfterText
                 
                 let heightOfLable:CGFloat = CScreenWidth * 16 / 375
                 self.lblPlaceHolder.frame = CGRect(
@@ -237,15 +237,15 @@ extension FloatingTextField {
                 
                 self.lblPlaceHolder.font = UIFont(
                     name: (self.font?.fontName)!,
-                    size: round(CScreenWidth * (self.PlaceholderFontSize - 2) / 375)
+                    size: round(CScreenWidth * (self.placeholderFontSize - 2) / 375)
                 )
                 
                 self.layoutIfNeeded()
                 self.updateWidthOfPlaceholder(true)
             }
         } else {
-            UIView.animate(withDuration: AnimationDuration) {
-                self.lblPlaceHolder.textColor = self.PlaceHolderColor
+            UIView.animate(withDuration: defaultAnimationDuration) {
+                self.lblPlaceHolder.textColor = self.placeHolderColor
                 
                 self.lblPlaceHolder.frame = CGRect(
                     x: self.placeHolderXPosstion(false),
@@ -256,7 +256,7 @@ extension FloatingTextField {
                 
                 self.lblPlaceHolder.font = UIFont(
                     name: (self.font?.fontName)!,
-                    size: round(CScreenWidth * (self.PlaceholderFontSize ) / 375)
+                    size: round(CScreenWidth * (self.placeholderFontSize ) / 375)
                 )
                 
                 self.layoutIfNeeded()
@@ -271,12 +271,12 @@ extension FloatingTextField {
         var xPossition: CGFloat = 0.0
         
         if isSmallHeight {
-            xPossition = self.frame.origin.x + PlaceHolderLeftPaddingAfterAnimation
+            xPossition = self.frame.origin.x + placeHolderLeftPaddingAfterAnimation
         }else {
-            xPossition = self.frame.origin.x + PlaceHolderLeftPadding
+            xPossition = self.frame.origin.x + placeHolderLeftPadding
         }
         
-        if ShowLeftView {
+        if showLeftView {
             xPossition = self.frame.height + 5 + self.frame.origin.x
         }
         
@@ -290,16 +290,16 @@ extension FloatingTextField {
         
         var maxWidth: CGFloat = self.frame.size.width
         
-        if ShowLeftView {
-            maxWidth = maxWidth - self.frame.size.height - 5
+        if showLeftView {
+            maxWidth -= (self.frame.size.height + 5)
         }else {
-            maxWidth = maxWidth - PlaceHolderLeftPaddingAfterAnimation
+            maxWidth -= placeHolderLeftPaddingAfterAnimation
         }
         
-        if ShowRightView {
-            maxWidth = maxWidth - self.frame.size.height - 5
+        if showRightView {
+            maxWidth -= (self.frame.size.height + 5)
         } else {
-            maxWidth = maxWidth - PlaceHolderLeftPaddingAfterAnimation
+            maxWidth -= placeHolderLeftPaddingAfterAnimation
         }
         
         // If placeholder widht is out of bound.
@@ -318,12 +318,12 @@ extension FloatingTextField {
     private func bottomLineViewSetup(){
         
         viewBottomLine.frame = CGRect(x: 0.0, y: self.frame.size.height-1, width: self.frame.size.width, height: 1.0)
-        viewBottomLine.backgroundColor = BottomLineColor
+        viewBottomLine.backgroundColor = bottomLineColor
         self.addSubview(viewBottomLine)
     }
     
     func updatedBottomLineColor(_ isNormalColor: Bool) {
-        viewBottomLine.backgroundColor = isNormalColor ? BottomLineColor : BottomLineSelectedColor
+        viewBottomLine.backgroundColor = isNormalColor ? bottomLineColor : bottomLineSelectedColor
     }
     
 }
@@ -341,7 +341,7 @@ extension FloatingTextField {
             height: self.frame.size.height
         )
         
-        btnRightView.setImage(RightViewImage, for: .normal)
+        btnRightView.setImage(rightViewImage, for: .normal)
         self.rightViewMode = .always
         self.rightView = btnRightView
         
@@ -378,7 +378,7 @@ extension FloatingTextField {
             height: self.frame.size.height
         )
         
-        btnLeftView.setImage(LeftViewImage, for: .normal)
+        btnLeftView.setImage(leftViewImage, for: .normal)
         
         self.leftViewMode = .always
         self.leftView = btnLeftView
